@@ -7,11 +7,14 @@ public class Main {
     public void doIt() {
         LinkedListStack stack = new LinkedListStack();
 
-        Coordinates c = new Coordinates();
-        c.setRow(1);
-        c.setCol(1);
+        Coordinates first_move = new Coordinates();
+        first_move.setRow(1);
+        first_move.setCol(1);
        
-		stack.push(c);
+		stack.push(first_move);
+        stack.algorithm();
+
+        
 
 
         Coordinates cs = new Coordinates();
@@ -24,10 +27,6 @@ public class Main {
         css.setCol(339);
         stack.push(css);
 
-                
-
-		//stack.push(22);
-		//stack.push(32);
 		System.out.println(stack);
     }
 }

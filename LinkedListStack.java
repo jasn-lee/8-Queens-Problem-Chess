@@ -1,10 +1,21 @@
 public class LinkedListStack {
-    
+    private boolean success = false;
     private Node top;
     private int count;
 
     public LinkedListStack() {
         count = 0;
+    }
+
+    public boolean algorithm() {
+        Node cur = top;
+        while (!success && cur != null)  {
+            
+            
+            return true;
+        }
+         return true;
+
     }
 
     public boolean push(Coordinates data) {
