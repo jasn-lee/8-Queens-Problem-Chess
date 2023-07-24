@@ -8,8 +8,9 @@ public class LinkedListStack<T> {
     }
 
     public boolean push(T data) {
+        
         Node<T> newNode = new Node<T>();
-        newNode.setData(data);
+        newNode.setCoordinates(data);
         newNode.setNext(top);
         top = newNode;
         count++;
@@ -48,7 +49,28 @@ public class LinkedListStack<T> {
         if (isEmpty()) {
             return null;
         }
-        return top.getData();
+        return (top.getCol());
 
     }
+
+    public String toString() {
+		String rtn = "";
+		if (isEmpty()) {
+			return "<Empty>";
+		}
+		
+		Node<T> tmp = top;
+		while(tmp != null) {
+			if (tmp == top) {
+				// top of stack
+				rtn += "top -> ";
+			} else {
+				rtn += "       ";
+			}
+			rtn += tmp.getData() + "\n";
+			tmp = tmp.getNext();
+		}
+		
+		return rtn;
+	}
 }

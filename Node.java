@@ -1,13 +1,21 @@
 public class Node<E> {
-    private E data;
+    private E col;
+    private E row;
     private Node<E> next;
 
-    public E getData() {
-        return data;
+    public E getCol() {
+        return col;
     }
 
-    public void setData(E data) {
-        this.data = data;
+    public void setCol(E data) {
+        this.col = col;
+    }
+    public E getRow() {
+        return row;
+    }
+
+    public void setRow(E data) {
+        this.row = row;
     }
 
     public Node<E> getNext() {
