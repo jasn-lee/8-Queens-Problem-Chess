@@ -1,15 +1,15 @@
-public class LinkedListStack<T> {
+public class LinkedListStack {
     
-    private Node<T> top;
+    private Node top;
     private int count;
 
     public LinkedListStack() {
         count = 0;
     }
 
-    public boolean push(T data) {
+    public boolean push(Coordinates data) {
         
-        Node<T> newNode = new Node<T>();
+        Node newNode = new Node();
         newNode.setCoordinates(data);
         newNode.setNext(top);
         top = newNode;
@@ -18,14 +18,15 @@ public class LinkedListStack<T> {
         return false;
     }
 
-    public T pop() {
+    public Integer pop() {
         if (isEmpty()) {
             return null;
         }
-        T rtn = top.getData();
+        Integer x = top.getCoordinates().getCol();
+        Integer y = top.getCoordinates().getRow();
         top = top.getNext();
         count--;
-        return rtn;
+        return (x + y);
     }
 
     public void clear() {
@@ -45,11 +46,11 @@ public class LinkedListStack<T> {
     public int depth() {
         return count;
     }
-    public T peek() {
+    public Integer peek() {
         if (isEmpty()) {
             return null;
         }
-        return (top.getCol());
+        return (top.getCoordinates().getCol());
 
     }
 
@@ -59,7 +60,7 @@ public class LinkedListStack<T> {
 			return "<Empty>";
 		}
 		
-		Node<T> tmp = top;
+		Node tmp = top;
 		while(tmp != null) {
 			if (tmp == top) {
 				// top of stack
@@ -67,7 +68,7 @@ public class LinkedListStack<T> {
 			} else {
 				rtn += "       ";
 			}
-			rtn += tmp.getData() + "\n";
+			rtn += (tmp.getCoordinates().getCol() + "," + tmp.getCoordinates().getRow() + "\n");
 			tmp = tmp.getNext();
 		}
 		

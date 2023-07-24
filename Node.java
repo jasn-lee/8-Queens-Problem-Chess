@@ -1,29 +1,41 @@
-public class Node<E> {
-    private E col;
-    private E row;
-    private Node<E> next;
+public class Node {
+    //private Integer col;
+    //private Integer row;
+    private Node next;
+    private Coordinates coordinates;
 
-    public E getCol() {
+    /* 
+    public Integer getCol() {
         return col;
     }
 
-    public void setCol(E data) {
+    public void setCol(Integer data) {
         this.col = col;
     }
-    public E getRow() {
+    public Integer getRow() {
         return row;
     }
 
-    public void setRow(E data) {
+    public void setRow(Integer data) {
         this.row = row;
     }
+    */
 
-    public Node<E> getNext() {
+    public Coordinates getCoordinates() {
+        return coordinates;
+    }
+
+    public void setCoordinates(Coordinates coordinates) {
+        this.coordinates = coordinates;
+    }
+
+    public Node getNext() {
         return next;
     }
 
-    public void setNext(Node<E> next) {
+    public void setNext(Node next) {
         this.next = next;
     }
+    
     
 }
