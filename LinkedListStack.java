@@ -10,16 +10,40 @@ public class LinkedListStack {
     public boolean algorithm() {
         Node cur = top;
         boolean flag = true;
-        /* 
-        while (!success)  {
-            while (cur != null) {
-                if (cur.getCoordinates().getCol().equals(top.getCoordinates().getCol())) {
-                    flag = false;
-            }   else if (cur.getCoordinates().getRow().equals(top.getCoordinates().getRow())) {
-                    flag = false;
+        boolean conflict = false;
+
+        while (!success) {
+            cur = top.getNext();
+            if ( cur != null) {
+                if (top.getCoordinates().getCol().equals(cur.getCoordinates().getCol())) {
+                    conflict = true;
+                }
+                if (top.getCoordinates().getRow().equals(cur.getCoordinates().getRow())) {
+                    conflict = true;
+                }
+                Integer col;
+                Integer row;
+                col = top.getCoordinates().getCol();
+                row = top.getCoordinates().getRow();
+                while ((top.getCoordinates().getCol() >= 1 && top.getCoordinates().getCol() <= 8) || 
+                        (top.getCoordinates().getRow() >= 1 && top.getCoordinates().getRow() <= 8)) {
+                            while (cur != null) {
+                                if (cur.getCoordinates().getCol().equals(top.getCoordinates().getCol()) &&
+                                    cur.getCoordinates().getRow().equals(top.getCoordinates().getRow())) {
+                                        conflict = true;
+                                        break;
+                                }
+                                cur = cur.getNext();
+                            }
+                            top.getCoordinates().setCol("--");
+                            top.getCoordinates().setCol("--");
+                        }
             }
-            }
-        */
+
+
+
+        }
+
         cur = cur.getNext();
         while (cur != null) {
             if (cur.getCoordinates().getCol() == top.getCoordinates().getCol()) {
