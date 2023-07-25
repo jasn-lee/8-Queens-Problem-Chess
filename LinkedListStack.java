@@ -22,9 +22,11 @@ public class LinkedListStack {
                 while (count < (depth - 1)) {
                     if (top.getCoordinates().getCol().equals(cur.getCoordinates().getCol())) {
                         conflict = true;
+                        break;
                 }
                     if (top.getCoordinates().getRow().equals(cur.getCoordinates().getRow())) {
                         conflict = true;
+                        break;
                 } else {
                     count++;
                     cur = cur.getNext();
@@ -40,8 +42,7 @@ public class LinkedListStack {
                     col = top.getCoordinates().getCol();
                     row = top.getCoordinates().getRow();
                     //Searching diagonallly left-up
-
-                    while ((col >= 1 && col <= 8) && (row >= 1 && row <= 8)) {
+                    while ((col >= 1 && col <= 8) && (row >= 1 && row <= 8) && conflict == false) {
                         cur = top.getNext();
                         while (cur != null) {
                             if (cur.getCoordinates().getCol().equals(col) &&
@@ -60,7 +61,7 @@ public class LinkedListStack {
                     //Searching diagonallly right-up
                     col = top.getCoordinates().getCol();
                     row = top.getCoordinates().getRow();
-                    while ((col >= 1 && col <= 8) && (row >= 1 && row <= 8)) {
+                    while ((col >= 1 && col <= 8) && (row >= 1 && row <= 8) && conflict == false) {
                     cur = top.getNext();
                         while (cur != null) {
                             if (cur.getCoordinates().getCol().equals(col) &&
@@ -80,7 +81,7 @@ public class LinkedListStack {
                     //Searching diagonallly right-down
                     col = top.getCoordinates().getCol();
                     row = top.getCoordinates().getRow();
-                    while ((col >= 1 && col <= 8) && (row >= 1 && row <= 8)) {
+                    while ((col >= 1 && col <= 8) && (row >= 1 && row <= 8) && conflict == false) {
                         cur = top.getNext();
                             while (cur != null) {
                                 if (cur.getCoordinates().getCol().equals(col) &&
@@ -100,7 +101,7 @@ public class LinkedListStack {
                     //Searching diagonallly left-down
                     col = top.getCoordinates().getCol();
                     row = top.getCoordinates().getRow();
-                    while ((col >= 1 && col <= 8) && (row >= 1 && row <= 8)) {
+                    while ((col >= 1 && col <= 8) && (row >= 1 && row <= 8) && conflict == false) {
                         cur = top.getNext();
                             while (cur != null) {
                                 if (cur.getCoordinates().getCol().equals(col) &&
@@ -122,7 +123,8 @@ public class LinkedListStack {
                     Node popped = new Node();
                     depth--;
                     popped = pop();
-                    if (popped.getCoordinates().getCol().equals(8)) {
+                    
+                    if (popped.getCoordinates().getCol() == 8) {
                         depth--;
                         popped = pop();
                     }
@@ -188,7 +190,9 @@ public class LinkedListStack {
         Integer x = top.getCoordinates().getCol();
         Integer y = top.getCoordinates().getRow();
         //top = top.getNext();
+        //Coordinates c = new Coordinates();
         Node popped = new Node();
+        //popped.setCoordinates(top);
         popped = top;
         top = top.getNext();
         count--;
@@ -202,7 +206,7 @@ public class LinkedListStack {
     }
 
     public boolean isEmpty() {
-        return (count == 0);
+        return (depth == 0);
 
     }
 
