@@ -161,8 +161,6 @@ public class LinkedListStack {
                     Node newNode = new Node();
                     newQueen.setRow(depth + 1);
                     newQueen.setCol(1);
-                    //top = newNode;
-                    System.out.println(top.getCoordinates().getCol() + "," + top.getCoordinates().getRow() + "\n");
                     depth++;
                     push(newQueen);
                 }
@@ -173,7 +171,6 @@ public class LinkedListStack {
                 newQueen.setRow(depth + 1);
                 newQueen.setCol(1);
                     //top = newNode;
-                System.out.println(top.getCoordinates().getCol() + "," + top.getCoordinates().getRow() + "\n");
                 depth++;
                 push(newQueen);
             }
@@ -251,7 +248,7 @@ public class LinkedListStack {
 			} else {
 				rtn += "       ";
 			}
-			rtn += (tmp.getCoordinates().getCol() + "," + tmp.getCoordinates().getRow() + "\n");
+			rtn += ("(" + tmp.getCoordinates().getCol() + "," + tmp.getCoordinates().getRow() + ")" + "\n");
 			tmp = tmp.getNext();
 		}
 		
@@ -259,10 +256,10 @@ public class LinkedListStack {
 	}
     
 
-    public boolean printGameBoard() {
+    public void printGameBoard() {
         Integer count;
         count = 0;
-        System.out.println("Output:");
+        //Creates blank-base game board
         char[][] gameBoard = {{'+','-','-','-','+','-','-','-','+','-','-','-','+','-','-','-','+',
                                '-','-','-','+','-','-','-','+','-','-','-','+','-','-','-','+'},
                               {'|',' ',' ',' ','|',' ',' ',' ','|',' ',' ',' ','|',' ',' ',' ','|',
@@ -297,80 +294,21 @@ public class LinkedListStack {
                                 ' ',' ',' ','|',' ',' ',' ','|',' ',' ',' ','|',' ',' ',' ','|'},
                               {'+','-','-','-','+','-','-','-','+','-','-','-','+','-','-','-','+',
                                '-','-','-','+','-','-','-','+','-','-','-','+','-','-','-','+'}};
+
+        //Traverses stack and places Queen in relation to board
         Node cur = top;
         Integer xPos;
         Integer yPos;
-        Integer boardX = null;
-        Integer boardY = null;
         while (cur != null) {
             xPos = cur.getCoordinates().getCol();
             yPos = cur.getCoordinates().getRow();
-            //gameBoard[x + 2][y + 1] = 'Q';
-            switch (xPos) {
-                case 1:
-                    boardX = 2;
-                    break;
-                case 2:
-                    boardX = 6;
-                    break;
-                case 3:
-                    boardX = 10;
-                    break;
-                case 4:
-                    boardX = 14;
-                    break;
 
-                case 5:
-                    boardX = 18;
-                    break;
-                case 6:
-                    boardX = 22;
-                    break;
-                case 7:
-                    boardX = 26;
-                    break;
-                case 8:
-                    boardX = 30;
-                    break;
-
-                default:
-                    break;
-            }
-            switch (yPos) {
-                case 1:
-                    boardY = 1;
-                    break;
-                case 2:
-                    boardY = 3;
-                    break;
-                case 3:
-                    boardY = 5;
-                    break;
-                case 4:
-                    boardY = 7;
-                    break;
-                case 5:
-                    boardY = 9;
-                    break;
-                case 6:
-                    boardY = 11;
-                    break;
-                case 7:
-                    boardY = 13;
-                    break;
-                case 8:
-                    boardY = 15;
-                    break;
-                default:
-                    break;
-            }
-            if (boardX == null || boardY == null) {
-                break;
-            }
-            gameBoard[boardY][boardX] = 'Q';
+            gameBoard[(2 * yPos) - 1] [(4 * xPos) - 2] = 'Q';
             cur = cur.getNext();
         }
-                               
+        
+        System.out.println("Output:");
+        //Prints out final game board with pieces in place
         for (char[] row: gameBoard) {
             for (char c : row) {
             System.out.print(c);
@@ -379,8 +317,6 @@ public class LinkedListStack {
             System.out.println();
 
         }
-
-    return true;
     }
 
 
