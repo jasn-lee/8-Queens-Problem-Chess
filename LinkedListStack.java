@@ -124,10 +124,14 @@ public class LinkedListStack {
                     depth--;
                     popped = pop();
                     
-                    if (popped.getCoordinates().getCol() == 8) {
-                        depth--;
-                        popped = pop();
+                    if (popped != null) {
+                        while (popped.getCoordinates().getCol() == 8) {
+                            depth--;
+                            popped = pop();
                     }
+
+                    }
+                    
                     //while (!isEmpty() || top.getCoordinates().getCol().equals(8)) {
                         //pop();
                     //}
