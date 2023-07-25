@@ -5,32 +5,35 @@ public class Coordinates implements Serializable {
     private Integer row;
     
     public Coordinates() {
-        col= 1;
-        row = 1;
+        col = 0;
+        row = 0;
     }
 
     public Integer getCol() {
         return col;
     }
 
-    public void setCol(String driver) {
-        if (driver == "increment") {
-            col++;
-        } else {
-            col--;
-        }
-        
+    public void setCol(Integer value) {
+        this.col = value;
+    }
+    public void incrementCol() {
+        col++;
+    }
+    public void reductCol() {
+        col--;
     }
 
     public Integer getRow() {
         return row;
     }
-
-    public void setRow(String driver) {
-        if (driver == "increment") {
-            row++;
-        } else {
-            row--;
-        }
+    public void setRow(Integer value) {
+        this.row = value;
     }
+    public void incrementRow() {
+        row++;
+    }
+    public void reductRow() {
+        row--;
+    }
+
 }

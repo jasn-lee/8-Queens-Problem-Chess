@@ -2,9 +2,11 @@ public class LinkedListStack {
     private boolean success = false;
     private Node top;
     private int count;
+    private Integer depth;
 
     public LinkedListStack() {
         count = 0;
+        depth = 1;
     }
 
     public boolean algorithm() {
@@ -12,7 +14,9 @@ public class LinkedListStack {
         boolean flag = true;
         boolean conflict = false;
 
+
         while (!success) {
+            conflict = false;
             cur = top.getNext();
             if ( cur != null) {
                 if (top.getCoordinates().getCol().equals(cur.getCoordinates().getCol())) {
@@ -21,71 +25,137 @@ public class LinkedListStack {
                 if (top.getCoordinates().getRow().equals(cur.getCoordinates().getRow())) {
                     conflict = true;
                 }
+
                 Integer col;
                 Integer row;
-                col = top.getCoordinates().getCol();
-                row = top.getCoordinates().getRow();
-                while ((top.getCoordinates().getCol() >= 1 && top.getCoordinates().getCol() <= 8) || 
-                        (top.getCoordinates().getRow() >= 1 && top.getCoordinates().getRow() <= 8)) {
+                Integer diagonal_count;
+                diagonal_count = 0;
+                while (diagonal_count < 4) {
+                    col = top.getCoordinates().getCol();
+                    row = top.getCoordinates().getRow();
+                    //Searching diagonallly left-up
+                    while ((col >= 1 && col <= 8) && (row >= 1 && row <= 8)) {
+                        cur = top.getNext();
                             while (cur != null) {
-                                if (cur.getCoordinates().getCol().equals(top.getCoordinates().getCol()) &&
-                                    cur.getCoordinates().getRow().equals(top.getCoordinates().getRow())) {
+                                if (cur.getCoordinates().getCol().equals(col) &&
+                                    cur.getCoordinates().getRow().equals(row)) {
                                         conflict = true;
                                         break;
                                 }
                                 cur = cur.getNext();
                             }
-                            top.getCoordinates().setCol("--");
-                            top.getCoordinates().setCol("--");
+                            col--;
+                            row--;
                         }
-            }
+                        diagonal_count++;
 
+                    //Searching diagonallly right-up
+                    col = top.getCoordinates().getCol();
+                    row = top.getCoordinates().getRow();
+                    while ((col >= 1 && col <= 8) && (row >= 1 && row <= 8)) {
+                        cur = top.getNext();
+                            while (cur != null) {
+                                if (cur.getCoordinates().getCol().equals(col) &&
+                                    cur.getCoordinates().getRow().equals(row)) {
+                                        conflict = true;
+                                        break;
+                                }
+                                cur = cur.getNext();
+                            }
+                            col++;
+                            row--;
+                        }
+                        diagonal_count++;
 
+                    //Searching diagonallly right-down
+                    col = top.getCoordinates().getCol();
+                    row = top.getCoordinates().getRow();
+                    while ((col >= 1 && col <= 8) && (row >= 1 && row <= 8)) {
+                        cur = top.getNext();
+                            while (cur != null) {
+                                if (cur.getCoordinates().getCol().equals(col) &&
+                                    cur.getCoordinates().getRow().equals(row)) {
+                                        conflict = true;
+                                        break;
+                                }
+                                cur = cur.getNext();
+                            }
+                            col++;
+                            row++;
+                        }
+                        diagonal_count++;
 
-        }
+                    //Searching diagonallly left-down
+                    col = top.getCoordinates().getCol();
+                    row = top.getCoordinates().getRow();
+                    while ((col >= 1 && col <= 8) && (row >= 1 && row <= 8)) {
+                        cur = top.getNext();
+                            while (cur != null) {
+                                if (cur.getCoordinates().getCol().equals(col) &&
+                                    cur.getCoordinates().getRow().equals(row)) {
+                                        conflict = true;
+                                        break;
+                                }
+                                cur = cur.getNext();
+                            }
+                            col--;
+                            row++;
+                        }
+                        diagonal_count++;
+                }
+                
 
-        cur = cur.getNext();
-        while (cur != null) {
-            if (cur.getCoordinates().getCol() == top.getCoordinates().getCol()) {
-                //CONFLICT
-            } if (cur.getCoordinates().getRow() == top.getCoordinates().getRow()) {
-                //CONFLICT
-            } else {
-                while ((top.getCoordinates().getCol() <= 8 && top.getCoordinates().getCol() >= 0) || 
-                        (0 <= top.getCoordinates().getRow() && top.getCoordinates().getRow() <= 8)) {
-                    if (top.getCoordinates().getCol() == cur.getCoordinates().getCol() ||
-                        top.getCoordinates().getRow() == cur.getCoordinates().getRow()) {
-                        //CONFLICT
-                    } else {
-                        cur = cur.getNext();
-                        top.getCoordinates().setCol("decrease--");
-                        top.getCoordinates().setRow("decrease--");
-
+                if (conflict == true) {
+                    Node popped = new Node();
+                    depth--;
+                    popped = pop();
+                    if (popped.getCoordinates().getCol().equals(8)) {
+                        depth--;
+                        popped = pop();
                     }
+                    //while (!isEmpty() || top.getCoordinates().getCol().equals(8)) {
+                        //pop();
+                    //}
+                    int newCol = 0;
+                    popped.getCoordinates().incrementCol();
+                    newCol = popped.getCoordinates().getCol();
+                    Coordinates newQueen = new Coordinates();
+                    newQueen.setRow(popped.getCoordinates().getRow());
+                    newQueen.setCol(newCol);
+                    depth++;
+                    push(newQueen);
                 }
-            }
-                
-        }
-            
-            if (flag == false) {
-                while (count == 0 || top.getCoordinates().getCol() != 8) {
-                    pop();
+                else if (conflict == false && depth == 8) {
+                    success = true;
+                    break;
+                } else {
+                    Coordinates newQueen = new Coordinates();
+                    Node newNode = new Node();
+                    newQueen.setRow(depth + 1);
+                    newQueen.setCol(1);
+                    //top = newNode;
+                    System.out.println(top.getCoordinates().getCol() + "," + top.getCoordinates().getRow() + "\n");
+                    depth++;
+                    push(newQueen);
                 }
+            } else {
                 
-            } else if (flag == true && count == (8)) {
-                success = true;
+                Coordinates newQueen = new Coordinates();
+                Node newNode = new Node();
+                newQueen.setRow(depth + 1);
+                newQueen.setCol(1);
+                    //top = newNode;
+                System.out.println(top.getCoordinates().getCol() + "," + top.getCoordinates().getRow() + "\n");
+                depth++;
+                push(newQueen);
             }
-            else {
-                Coordinates c = new Coordinates();
-                c.setRow(count + 1);
-                c.setCol(1);
-                push(c);
+      
             }
-
-        }
+        
          return true;
+        }
 
-    }
+    
 
     public boolean push(Coordinates data) {
         
@@ -98,15 +168,19 @@ public class LinkedListStack {
         return false;
     }
 
-    public Integer pop() {
+    public Node pop() {
         if (isEmpty()) {
             return null;
         }
         Integer x = top.getCoordinates().getCol();
         Integer y = top.getCoordinates().getRow();
+        //top = top.getNext();
+        Node popped = new Node();
+        popped = top;
         top = top.getNext();
         count--;
-        return (x + y);
+        //return (x + y);
+        return popped;
     }
 
     public void clear() {
