@@ -5,7 +5,6 @@ public class LinkedListStack {
     private Integer depth;
 
     public LinkedListStack() {
-        count = 0;
         depth = 1;
     }
 
@@ -19,12 +18,19 @@ public class LinkedListStack {
             conflict = false;
             cur = top.getNext();
             if ( cur != null) {
-                if (top.getCoordinates().getCol().equals(cur.getCoordinates().getCol())) {
-                    conflict = true;
+                count = 0;
+                while (count < (depth - 1)) {
+                    if (top.getCoordinates().getCol().equals(cur.getCoordinates().getCol())) {
+                        conflict = true;
                 }
-                if (top.getCoordinates().getRow().equals(cur.getCoordinates().getRow())) {
-                    conflict = true;
+                    if (top.getCoordinates().getRow().equals(cur.getCoordinates().getRow())) {
+                        conflict = true;
+                } else {
+                    count++;
+                    cur = cur.getNext();
                 }
+                }
+                
 
                 Integer col;
                 Integer row;
@@ -34,38 +40,42 @@ public class LinkedListStack {
                     col = top.getCoordinates().getCol();
                     row = top.getCoordinates().getRow();
                     //Searching diagonallly left-up
+
                     while ((col >= 1 && col <= 8) && (row >= 1 && row <= 8)) {
                         cur = top.getNext();
-                            while (cur != null) {
-                                if (cur.getCoordinates().getCol().equals(col) &&
-                                    cur.getCoordinates().getRow().equals(row)) {
-                                        conflict = true;
-                                        break;
-                                }
-                                cur = cur.getNext();
+                        while (cur != null) {
+                            if (cur.getCoordinates().getCol().equals(col) &&
+                                cur.getCoordinates().getRow().equals(row)) {
+                                    conflict = true;
+                                    break;
                             }
-                            col--;
-                            row--;
+                            cur = cur.getNext();
                         }
-                        diagonal_count++;
+                        col--;
+                        row--;
+                    }
+                    diagonal_count++;
+                    
 
                     //Searching diagonallly right-up
                     col = top.getCoordinates().getCol();
                     row = top.getCoordinates().getRow();
                     while ((col >= 1 && col <= 8) && (row >= 1 && row <= 8)) {
-                        cur = top.getNext();
-                            while (cur != null) {
-                                if (cur.getCoordinates().getCol().equals(col) &&
-                                    cur.getCoordinates().getRow().equals(row)) {
-                                        conflict = true;
-                                        break;
-                                }
-                                cur = cur.getNext();
+                    cur = top.getNext();
+                        while (cur != null) {
+                            if (cur.getCoordinates().getCol().equals(col) &&
+                                cur.getCoordinates().getRow().equals(row)) {
+                                    conflict = true;
+                                    break;
                             }
-                            col++;
-                            row--;
+                            cur = cur.getNext();
                         }
-                        diagonal_count++;
+                        col++;
+                        row--;
+                    }
+                    diagonal_count++;
+                    
+                    
 
                     //Searching diagonallly right-down
                     col = top.getCoordinates().getCol();
@@ -74,16 +84,18 @@ public class LinkedListStack {
                         cur = top.getNext();
                             while (cur != null) {
                                 if (cur.getCoordinates().getCol().equals(col) &&
-                                    cur.getCoordinates().getRow().equals(row)) {
-                                        conflict = true;
-                                        break;
-                                }
-                                cur = cur.getNext();
+                                cur.getCoordinates().getRow().equals(row)) {
+                                    conflict = true;
+                                    break;
                             }
-                            col++;
-                            row++;
+                            cur = cur.getNext();
                         }
-                        diagonal_count++;
+                        col++;
+                        row++;
+                    }
+                    diagonal_count++;
+                    
+                    
 
                     //Searching diagonallly left-down
                     col = top.getCoordinates().getCol();
@@ -92,16 +104,17 @@ public class LinkedListStack {
                         cur = top.getNext();
                             while (cur != null) {
                                 if (cur.getCoordinates().getCol().equals(col) &&
-                                    cur.getCoordinates().getRow().equals(row)) {
-                                        conflict = true;
-                                        break;
-                                }
-                                cur = cur.getNext();
+                                cur.getCoordinates().getRow().equals(row)) {
+                                    conflict = true;
+                                    break;
                             }
-                            col--;
-                            row++;
+                            cur = cur.getNext();
                         }
-                        diagonal_count++;
+                        col--;
+                        row++;
+                    }
+                    diagonal_count++;
+                    
                 }
                 
 
