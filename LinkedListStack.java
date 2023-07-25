@@ -1,3 +1,9 @@
+// Class: LinkedListStack
+//
+// Description:
+// 
+//
+
 public class LinkedListStack {
     private boolean success = false;
     private Node top;
@@ -8,11 +14,15 @@ public class LinkedListStack {
         depth = 1;
     }
 
-    public boolean algorithm() {
+/// algorithm //// 
+/// Input : n/a ///
+/// Output: Sets String -- phrase -- for node adding in Linked List ///
+/// Reads in & parses through dorian_gray.txt file in programmer's local storage. Deletes all ///
+/// punctuation & lowercases all text. Concatonates line by line into a String body called -- phrase ///
+    public void algorithm() {
         Node cur = top;
         boolean flag = true;
         boolean conflict = false;
-
 
         while (!success) {
             conflict = false;
@@ -170,7 +180,6 @@ public class LinkedListStack {
       
             }
         
-         return true;
         }
 
     
@@ -227,7 +236,7 @@ public class LinkedListStack {
         return (top.getCoordinates().getCol());
 
     }
-/* 
+
     public String toString() {
 		String rtn = "";
 		if (isEmpty()) {
@@ -248,7 +257,7 @@ public class LinkedListStack {
 		
 		return rtn;
 	}
-    */
+    
 
     public boolean printGameBoard() {
         Integer count;
@@ -288,21 +297,90 @@ public class LinkedListStack {
                                 ' ',' ',' ','|',' ',' ',' ','|',' ',' ',' ','|',' ',' ',' ','|'},
                               {'+','-','-','-','+','-','-','-','+','-','-','-','+','-','-','-','+',
                                '-','-','-','+','-','-','-','+','-','-','-','+','-','-','-','+'}};
-         
-        for (char[] row: gameBoard) {
-            count = 0;
+        Node cur = top;
+        Integer xPos;
+        Integer yPos;
+        Integer boardX = null;
+        Integer boardY = null;
+        while (cur != null) {
+            xPos = cur.getCoordinates().getCol();
+            yPos = cur.getCoordinates().getRow();
+            //gameBoard[x + 2][y + 1] = 'Q';
+            switch (xPos) {
+                case 1:
+                    boardX = 2;
+                    break;
+                case 2:
+                    boardX = 6;
+                    break;
+                case 3:
+                    boardX = 10;
+                    break;
+                case 4:
+                    boardX = 14;
+                    break;
 
+                case 5:
+                    boardX = 18;
+                    break;
+                case 6:
+                    boardX = 22;
+                    break;
+                case 7:
+                    boardX = 26;
+                    break;
+                case 8:
+                    boardX = 30;
+                    break;
+
+                default:
+                    break;
+            }
+            switch (yPos) {
+                case 1:
+                    boardY = 1;
+                    break;
+                case 2:
+                    boardY = 3;
+                    break;
+                case 3:
+                    boardY = 5;
+                    break;
+                case 4:
+                    boardY = 7;
+                    break;
+                case 5:
+                    boardY = 9;
+                    break;
+                case 6:
+                    boardY = 11;
+                    break;
+                case 7:
+                    boardY = 13;
+                    break;
+                case 8:
+                    boardY = 15;
+                    break;
+                default:
+                    break;
+            }
+            if (boardX == null || boardY == null) {
+                break;
+            }
+            gameBoard[boardY][boardX] = 'Q';
+            cur = cur.getNext();
+        }
+                               
+        for (char[] row: gameBoard) {
             for (char c : row) {
             System.out.print(c);
             }
             count++;
             System.out.println();
 
-    }
-    return true;
-        
-        
+        }
 
+    return true;
     }
 
 
