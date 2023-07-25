@@ -33,7 +33,6 @@ public class LinkedListStack {
                 }
                 }
                 
-
                 Integer col;
                 Integer row;
                 Integer diagonal_count;
@@ -228,7 +227,7 @@ public class LinkedListStack {
         return (top.getCoordinates().getCol());
 
     }
-
+/* 
     public String toString() {
 		String rtn = "";
 		if (isEmpty()) {
@@ -249,4 +248,24 @@ public class LinkedListStack {
 		
 		return rtn;
 	}
+    */
+
+    public boolean printGameBoard() {
+        System.out.println("Output:");
+        char[] [] gameBoard = {{'+','-','-','-','+','-','-','-','+','-','-','-','+','-','-','-','+',
+                                '-','-','-','+','-','-','-','+','-','-','-','+','-','-','-','+'},
+                                {'|',' ',' ',' ','|',' ',' ',' ','|',' ',' ',' ','|',' ',' ',' ','|',
+                                ' ',' ',' ','|',' ',' ',' ','|',' ',' ',' ','|',' ',' ',' ','|'}};
+
+        for (char [] row: gameBoard) {
+            for (char c : row) {
+                System.out.print(c);
+            }
+            System.out.println();
+        }
+        return true;
+
+    }
+
+
 }

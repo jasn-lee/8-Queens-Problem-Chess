@@ -14,9 +14,10 @@ public class Main {
 		stack.push(first_move);
         stack.algorithm();
 
-        
-
-
 		System.out.println(stack);
+
+        stack.printGameBoard();
+
+
     }
 }
