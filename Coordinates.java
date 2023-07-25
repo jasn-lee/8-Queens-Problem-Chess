@@ -13,15 +13,24 @@ public class Coordinates implements Serializable {
         return col;
     }
 
-    public void setCol(Integer num) {
-        this.col = num;
+    public void setCol(String driver) {
+        if (driver == "increment") {
+            col++;
+        } else {
+            col--;
+        }
+        
     }
 
     public Integer getRow() {
         return row;
     }
 
-    public void setRow(Integer num) {
-        this.row = num;
+    public void setRow(String driver) {
+        if (driver == "increment") {
+            row++;
+        } else {
+            row--;
+        }
     }
 }
