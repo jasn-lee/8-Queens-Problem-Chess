@@ -206,6 +206,7 @@ public class LinkedListStack {
 /// Shows in string form, the values of col & row in the stack, from top to bottom       ///
     public String toString() {
 		String rtn = "";
+        System.out.println("Linked List Stack: ");
 		if (isEmpty()) {
 			return "<Empty>";
 		}
@@ -227,7 +228,6 @@ public class LinkedListStack {
 /// Output: Prints out the visual of the Chess board (8x8), with 'Q' representing the 8 Queens placed throughout        ///                                                                                                                        
 /// Uses --char-- and --2D array-- to print out the board. Traversing the list and placing in relation to print.        ///
     public void printGameBoard() {
-        Integer count;
         count = 0;
         //Creates blank-base game board
         char[][] gameBoard = {{'+','-','-','-','+','-','-','-','+','-','-','-','+','-','-','-','+',
@@ -277,7 +277,7 @@ public class LinkedListStack {
             cur = cur.getNext();
         }
         
-        System.out.println("Output:");
+        System.out.println("Chess Board:");
         //Prints out final game board with pieces in place
         for (char[] row: gameBoard) {
             for (char c : row) {
