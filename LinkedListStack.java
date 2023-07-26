@@ -1,7 +1,8 @@
 // Class: LinkedListStack
 //
 // Description:
-// 
+//      Builds the Linked List stack, can pop off nodes of the stack, uses algorithm to sort through
+//      new top nodes of stack to find conflicts, and prints out visuals of stack & board.
 //
 
 public class LinkedListStack {
@@ -191,41 +192,26 @@ public class LinkedListStack {
         return popped;
     }
 
-    public void clear() {
-        count = 0;
-        top = null;
-    }
-
+/// isEmpty /// 
+/// Input : n/a                                              ///
+/// Output: returns a boolean depending on if depth == 0   ///                                                                                                                 
+/// Used as a checker if the stack is empty or not        ///
     public boolean isEmpty() {
         return (depth == 0);
-
     }
 
-    public boolean isFull() {
-        return false;
-    }
-
-    public int depth() {
-        return count;
-    }
-    public Integer peek() {
-        if (isEmpty()) {
-            return null;
-        }
-        return (top.getCoordinates().getCol());
-
-    }
-
+/// toString /// 
+/// Input : n/a                                                                             ///
+/// Output: Prints out & returns visual depiction of Linked List Stack                      ///                                                                                                                 
+/// Shows in string form, the values of col & row in the stack, from top to bottom       ///
     public String toString() {
 		String rtn = "";
 		if (isEmpty()) {
 			return "<Empty>";
 		}
-		
 		Node tmp = top;
 		while(tmp != null) {
 			if (tmp == top) {
-				// top of stack
 				rtn += "top -> ";
 			} else {
 				rtn += "       ";
@@ -233,11 +219,13 @@ public class LinkedListStack {
 			rtn += ("(" + tmp.getCoordinates().getCol() + "," + tmp.getCoordinates().getRow() + ")" + "\n");
 			tmp = tmp.getNext();
 		}
-		
 		return rtn;
 	}
     
-
+/// printGameBoard /// 
+/// Input : n/a                                                                                                         ///
+/// Output: Prints out the visual of the Chess board (8x8), with 'Q' representing the 8 Queens placed throughout        ///                                                                                                                        
+/// Uses --char-- and --2D array-- to print out the board. Traversing the list and placing in relation to print.        ///
     public void printGameBoard() {
         Integer count;
         count = 0;
@@ -295,11 +283,7 @@ public class LinkedListStack {
             for (char c : row) {
             System.out.print(c);
             }
-            count++;
             System.out.println();
-
         }
     }
-
-
 }
