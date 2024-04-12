@@ -9,7 +9,7 @@
 //
 // Description:
 // This program uses the Linked list version of stacks to create a system that solves the 8 Queens Problem. 
-// Using an intial placement of the Queen, it then uses an algorithm to place new Queens one-by-one throughout
+// Using an initial placement of the Queen, it then uses an algorithm to place new Queens one-by-one throughout
 // the board, able to correct past placements, until a Queen is placed in every row/column, and unable to 
 // capture one another.
 //
